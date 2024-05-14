@@ -2,18 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 * {color-scheme:dark;}
-/*
-:root {
-    --card:210 67 30%;
-    --background: 210 67 4%;
-    --foreground: 0 0 88%;
-    --border: 210 67 25%;
-    --card-foreground: 0 0 88%;
-    --accent: 210 67 25%;
-    --muted: 220 90% 15.1%;
-    --primary: 210 80% 60.2%;
-    --secondary: 220 90% 16.1%;
-}
-.nd-codeblock {
-    background-color:#24292e;
-}*/
