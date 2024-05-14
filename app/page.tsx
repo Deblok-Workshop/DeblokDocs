@@ -5,6 +5,7 @@ export default function HomePage() {
     <main className="flex h-screen flex-col justify-center text-center">
       <h1 className="mb-4 text-2xl font-bold">Welcome to Deblok Documentation</h1>
       <p className="text-muted-foreground">
+        
         {' '}
         <Cards className='w-[50%] mx-auto justify-center'>
           <Card title="Go to /docs" description='to get started' href="/docs"></Card>
