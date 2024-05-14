@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { Card,Cards } from 'fumadocs-ui/components/card';
 export default function HomePage() {
   return (
+    
     <main className="flex h-screen flex-col justify-center text-center">
+
       <h1 className="mb-4 text-2xl font-bold">Welcome to Deblok Documentation</h1>
       <p className="text-muted-foreground">
         
