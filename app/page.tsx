@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import { Card,Cards } from 'fumadocs-ui/components/card';
 export default function HomePage() {
   return (
