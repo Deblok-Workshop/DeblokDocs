@@ -2,12 +2,31 @@
 title: Setting up DeblokManager
 description: Deblok is a platform for disposable workspaces on-the-fly.
 ---
+import {Step, Steps} from "fumadocs-ui/components/steps"
+
 This guide will show you how to deploy NewDeblok on your computer:
 <Steps>
   <Step>
     Start by cloning the NewDeblok GitHub repository:
-    ```bash
-    git clone https://github.com/Deblok-Workshop/DeblokManager.git
-    ```
+```bash
+git clone https://github.com/Deblok-Workshop/DeblokManager.git
+cd DeblokManager
+```
+  </Step>
+  <Step>
+    Then install NGINX if you haven't already and copy over the configs
+```bash title="Installing Nginx" icon="bash"
+sudo apt install nginx # Debian, Ubuntu, Linux Mint
+sudo dnf install nginx # Fedora, Red Hat
+sudo apk add nginx # Alpine
+sudo zypper install nginx # openSUSE, SUSE Linux Enterprise
+sudo pacman -S nginx # Arch Linux, Manjaro
+sudo emerge nginx # Gentoo
+```
+
+```bash title="Using DeblokManager's configs" icon="bash"
+sudo systemctl stop nginx # use service nginx stop if not systemctl
+sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
+```
   </Step>
 </Steps>

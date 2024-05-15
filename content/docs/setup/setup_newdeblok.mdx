@@ -8,27 +8,27 @@ This guide will show you how to deploy NewDeblok on your computer:
 <Steps>
   <Step>
     Start by cloning the NewDeblok GitHub repository:
-    ```bash
-    git clone --submodules https://github.com/Deblok-Workshop/NewDeblok.git
-    ```
+```bash icon="bash"
+git clone --submodules https://github.com/Deblok-Workshop/NewDeblok.git
+```
   </Step>
   <Step>
     Then install dependencies
-    ```bash
-    npm i -g bun # if you haven't installed bun
-    bun i
-    ```
+```bash icon="bash"
+npm i -g bun # if you haven't installed bun
+bun i
+```
   </Step>
   <Step>
     Now add your DeblokManager endpoints to your `.env` file, for example:
-    ```
+```bash title="Example .env file" icon="bash"
     DBPWD=unused-but-required
     ENDPOINTS=example.com:8000,example2.com:8000
-    ```
+```
   </Step>
   <Step>
     Finally start NewDeblok
-```
+```text title="Starting NewDeblok" icon="bash"
 $ bun run start
 $ bash scripts/unattended.sh
 [i] Building styles...
@@ -40,6 +40,6 @@ Listening on port 8080 or
  │ 0.0.0.0:8080
  │ 127.0.0.1:8080
  └─────────────────────────>
- ```
+```
   </Step>
 </Steps>
