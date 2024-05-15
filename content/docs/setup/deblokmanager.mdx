@@ -38,4 +38,25 @@ sudo bash setup_dockertcp.sh # only works if systemctl, use --socket if you cann
 bun run index.ts # --socket is optional to use /var/run/docker.sock
 ```
   </Step>
+  <Step>
+    Optionally you can change the default password or change other policies:
+    ```json title="config/config.json"
+{
+    "port-range":"59000-59100",
+    "webserver": {"port":"8100"},
+    "authentication": {"username":"admin","password":"admin"},
+    "policy": {
+        "resources":{
+           "maxram":"4G",
+           "maxcores":"2"
+        },
+        "keepalive": {
+          "increment": 300,
+            "initial": 60
+        }
+    }
+    
+}
+    ```
+  </Step>
 </Steps>
