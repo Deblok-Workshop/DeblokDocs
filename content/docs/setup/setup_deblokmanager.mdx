@@ -30,4 +30,12 @@ sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
 sudo systemctl start nginx
 ```
   </Step>
+  <Step>
+    Finally you can start DeblokManager
+```bash
+npm i -g bun # if you haven't installed bun yet
+sudo bash setup_dockertcp.sh # only works if systemctl, use --socket if you cannot do this
+bun run index.ts # --socket is optional to use /var/run/docker.sock
+```
+  </Step>
 </Steps>
