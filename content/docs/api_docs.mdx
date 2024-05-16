@@ -70,6 +70,7 @@ ERR: One or more fields are missing.
 
 #### POST `/api/auth/login`:
 Generates a new session for a Deblok account, returns a Deblok Auth Token.
+
 **Example Body**:
 ```json
 {
@@ -113,6 +114,22 @@ Creates a Deblok container and returns the id, node, and the port.
 **Example Success Response** (200):
 ```json
 {"port":"59000:6080","fromNode":0,"returned":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Failure Response** (400):
+```text
+ERR: Must provide userid.
+```
+
+#### POST `/api/container/kill`:
+Kills (not deletes) a Deblok container and returns the result.
+* The id field has to be a valid Docker container
+* The "for" field has to be a valid Deblok user id 
+* The node field has to be the index of a DeblokManager node (-1 for automatic)
+
+**Example Body**:
+```json
+{"id":"debian","for":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d","node":0}
 ```
 
 **Example Failure Response** (400):
