@@ -293,10 +293,124 @@ Creates a DeblokManager-managed Docker container with custom resources and port 
 
 **Example Success Response**:
 ```text
-Container 41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d has been started.
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
 ```
 
 **Example Failure Response** (400):
 ```text
 ERR: RAM exceeds the maximum allowed value of 4G.
 ```
+
+#### GET `/containers/list`:
+Returns **all** running Docker containers, DeblokManager-managed or not.
+
+#### POST `/containers/kill`:
+Kills a DeblokManager-managed container.
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
+```
+
+**Example Failure Response** (400):
+```text
+ERR: DeblokManager doesn't manage this container.
+```
+
+#### POST `/containers/restart`:
+Restarts a DeblokManager-managed container.
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
+```
+
+**Example Failure Response** (400):
+```text
+ERR: DeblokManager doesn't manage this container.
+```
+
+#### POST `/containers/delete`:
+Deletes a DeblokManager-managed container.
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
+```
+
+**Example Failure Response** (400):
+```text
+ERR: DeblokManager doesn't manage this container.
+```
+
+#### POST `/containers/pause`:
+Pauses a DeblokManager-managed container.
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
+```
+
+**Example Failure Response** (400):
+```text
+ERR: DeblokManager doesn't manage this container.
+```
+
+#### POST `/containers/unpause`:
+Unpauses a DeblokManager-managed container.
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d
+```
+
+**Example Failure Response** (400):
+```text
+ERR: DeblokManager doesn't manage this container.
+```
+
+#### POST `/containers/keepalive`:
+Updates the container keepalive by incrementing it by `config.policy.keepalive.increment`
+
+**Example Body**:
+```json
+{"id":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Success Response**:
+```text
+Updated.
+```
+
+**Example Failure Response** (400):
+```text
+ERR: Keepalive does not exist.
+```
+
+#### GET `/ports/list`:
+Returns **all** open ports in the specified port range (`config["port-range"]`)
