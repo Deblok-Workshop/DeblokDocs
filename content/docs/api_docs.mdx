@@ -7,19 +7,6 @@ description: Deblok is a platform for disposable workspaces on-the-fly.
 Keep in mind that the default ratelimit policies are 100 requests per 5 minutes across all api routes. This can be changed in `config.ts`.
 
 
-#### GET `/api/policy/:node/get`:
-Gets the DeblokManager node's policies
-* The node field has to be an integer
-```json
-{"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
-```
-
-#### GET `/api/healthcheck`:
-Returns the status of the NewDeblok instance
-```json
-{"api":"up", "backend":["up","up","down"]}
-```
-
 ## Captcha
 #### GET `/api/captcha/request`:
 Requests a captcha to be generated. Returns a UUID.
@@ -130,7 +117,7 @@ Gets the user info of the specified user, right now this is just the display nam
 ERR: The user does not exist.
 ```
 
-### POST `/api/auth/updatedisplayname/`:
+#### POST `/api/auth/updatedisplayname/`:
 Changes the display name for a given user.
 
 **Example Body**:
@@ -250,6 +237,41 @@ Restarts a Deblok container and returns the result.
 ```text
 ERR: Must provide userid.
 ```
+
+#### POST `/api/container/keepalive`:
+Ensure a container is alive by sending keepalive requests.
+**Example Body**:
+```json
+{"id":"examplemd5hashhere","node":0}
+```
+
+**Example Success Response**:
+```text
+OK!
+```
+
+**Example Failure Response** (500):
+```text
+Internal Server Error
+```
+
+## Uncategorized
+
+#### GET `/api/policy/:node/get`:
+Gets the DeblokManager node's policies
+* The node field has to be an integer
+```json
+{"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
+```
+
+#### GET `/api/healthcheck`:
+Returns the status of the NewDeblok instance
+```json
+{"api":"up", "backend":["up","up","down"]}
+```
+
+#### GET `/api/img/identicon.png`:
+Returns an image of a random identicon.
 
 ## DeblokManager
 Keep in mind that there is HTTP Basic auth applied to DeblokManager. You can change the password or username in `config/config.json`.
