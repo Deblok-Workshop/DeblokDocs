@@ -3,7 +3,7 @@ title: API Documentation
 description: Deblok is a platform for disposable workspaces on-the-fly.
 ---
 
-## NewDeblok
+# NewDeblok
 Keep in mind that the default ratelimit policies are 100 requests per 5 minutes across all api routes. This can be changed in `config.ts`.
 
 
@@ -273,7 +273,7 @@ Returns the status of the NewDeblok instance
 #### GET `/api/img/identicon.png`:
 Returns an image of a random identicon.
 
-## DeblokManager
+# DeblokManager
 Keep in mind that there is HTTP Basic auth applied to DeblokManager. You can change the password or username in `config/config.json`.
 
 #### GET `/policy/`:
@@ -281,4 +281,22 @@ Gets the DeblokManager node's policies
 * The node field has to be an integer
 ```json
 {"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
+```
+
+#### POST `/containers/create`:
+Creates a DeblokManager-managed Docker container with custom resources and port allocations. Keep in mind that there is a whitelist that can be configured in config/list.txt, by default all Deblok containers are whitelisted.
+
+**Example Body**:
+```json
+{"name":"deblokmanager-example0","image":"debian","resources":{"ram":"1G","cores":"1"},"ports":"8900:8080"}
+```
+
+**Example Success Response**:
+```text
+Container 41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d has been started.
+```
+
+**Example Failure Response** (400):
+```text
+ERR: RAM exceeds the maximum allowed value of 4G.
 ```
