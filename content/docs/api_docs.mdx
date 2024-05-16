@@ -81,6 +81,28 @@ OK!
 ERR: The creation time and/or the expiry time is invalid.
 ```
 
+## Container Management
+
+#### POST `/api/container/create`:
+Creates a Deblok container and returns the id, node, and the port.
+* The name field has to be a friendly name from `docker/containers.json`
+* The "for" field has to be a valid Deblok user id 
+* The node field has to be the index of a DeblokManager node (-1 for automatic)
+
+**Example Body**:
+```json
+{"name":"debian","for":"md5:examplemd5hash","node":-1}
+```
+
+**Example Success Response**:
+```json
+{"port":"59000:6080","fromNode":0,"returned":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
+```
+
+**Example Failure Response**:
+```text
+ERR: Must provide userid.
+```
 
 ## DeblokManager
 Keep in mind that there is HTTP Basic auth applied to DeblokManager. You can change the password or username in `config/config.json`.
