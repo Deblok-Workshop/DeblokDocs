@@ -6,6 +6,14 @@ description: Deblok is a platform for disposable workspaces on-the-fly.
 ## NewDeblok
 Keep in mind that the default ratelimit policies are 100 requests per 5 minutes across all api routes. This can be changed in `config.ts`.
 
+
+#### GET `/api/policy/:node/get`:
+Gets the DeblokManager node's policies
+* The node field has to be an integer
+```json
+{"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
+```
+
 #### GET `/api/healthcheck`:
 Returns the status of the NewDeblok instance
 ```json
@@ -107,6 +115,8 @@ OK!
 ```text
 ERR: The creation time and/or the expiry time is invalid.
 ```
+
+
 
 ## Container Management
 
