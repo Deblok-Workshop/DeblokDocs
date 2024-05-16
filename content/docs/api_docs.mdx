@@ -6,20 +6,20 @@ description: Deblok is a platform for disposable workspaces on-the-fly.
 ## NewDeblok
 Keep in mind that the default ratelimit policies are 100 requests per 5 minutes across all api routes. This can be changed in `config.ts`.
 
-**GET `/api/healthcheck`**:
+#### **GET `/api/healthcheck`**:
 Returns the status of the NewDeblok instance
 ```json
 {"api":"up", "backend":["up","up","down"]}
 ```
 
 ## Captcha
-**GET `/api/captcha/request`**:
+#### **GET `/api/captcha/request`**:
 Requests a captcha to be generated. Returns a UUID.
 
-**GET `/api/captcha/:query/void`**:
+#### **GET `/api/captcha/:query/void`**:
 Voids a captcha. Returns 204.
 
-**POST `/api/captcha/:query/validate`**:
+#### **POST `/api/captcha/:query/validate`**:
 Checks if the given captcha is correct or not
 
 **Example Body**:
@@ -32,7 +32,7 @@ Checks if the given captcha is correct or not
 true
 ```
 
-**GET `/api/captcha/:query/image.gif`**:
+#### **GET `/api/captcha/:query/image.gif`**:
 Returns the image of a given captcha
 
 ## DeblokManager
