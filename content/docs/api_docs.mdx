@@ -275,3 +275,10 @@ Returns an image of a random identicon.
 
 ## DeblokManager
 Keep in mind that there is HTTP Basic auth applied to DeblokManager. You can change the password or username in `config/config.json`.
+
+#### GET `/policy/`:
+Gets the DeblokManager node's policies
+* The node field has to be an integer
+```json
+{"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
+```
