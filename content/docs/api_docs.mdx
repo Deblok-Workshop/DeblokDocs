@@ -18,6 +18,7 @@ Requests a captcha to be generated. Returns a UUID.
 
 #### GET `/api/captcha/:query/void`:
 Voids a captcha. Returns 204.
+* The `query` field has to be a valid Captcha UUID
 
 **Example Failure Response** (404):
 ```text
@@ -31,6 +32,8 @@ ERR: Captcha not found.
 
 #### POST `/api/captcha/:query/validate`:
 Checks if the given captcha is correct or not
+* The `query` field has to be a valid Captcha UUID
+* The request body has to be just the captcha answer and nothing else.
 
 **Example Body**:
 ```text
@@ -45,6 +48,7 @@ true
 
 #### GET `/api/captcha/:query/image.gif`:
 Returns the image of a given captcha.
+* The `query` field has to be a valid Captcha UUID
 
 **Example Failure Response** (404):
 ```text
@@ -54,6 +58,9 @@ ERR: Captcha not found.
 ## Authentication
 #### POST `/api/auth/signup`:
 Makes a new Deblok account, returns a UUID.
+* The `usr` field has to be an MD5 hash of the username
+* The `pwd` field has to be an SHA256 hash of the password
+* The `em` field is the email address.
 **Example Body**:
 ```json
 {
@@ -70,7 +77,9 @@ ERR: One or more fields are missing.
 
 #### POST `/api/auth/login`:
 Generates a new session for a Deblok account, returns a Deblok Auth Token.
-
+* The `usr` field has to be an MD5 hash of the username
+* The `pwd` field has to be an SHA256 hash of the password
+* The `em` field is unused.
 **Example Body**:
 ```json
 {
@@ -87,6 +96,7 @@ ERR: Password is incorrect
 
 #### POST `/api/auth/tokenvalidate`:
 Ensures a Deblok Auth Token is valid. Accepts a Deblok Auth Token and returns any errors or OK!
+* The request body has to be the auth token and nothing else.
 
 **Example Success Response** (200):
 ```text
