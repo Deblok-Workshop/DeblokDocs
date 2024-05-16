@@ -19,6 +19,16 @@ Requests a captcha to be generated. Returns a UUID.
 #### GET `/api/captcha/:query/void`:
 Voids a captcha. Returns 204.
 
+**Example Failure Response** (404):
+```text
+ERR: Captcha not found.
+```
+
+**Example Failure Response** (404):
+```text
+ERR: Captcha not found.
+```
+
 #### POST `/api/captcha/:query/validate`:
 Checks if the given captcha is correct or not
 
@@ -32,8 +42,14 @@ Checks if the given captcha is correct or not
 true
 ```
 
+
 #### GET `/api/captcha/:query/image.gif`:
-Returns the image of a given captcha
+Returns the image of a given captcha.
+
+**Example Failure Response** (404):
+```text
+ERR: Captcha not found.
+```
 
 ## Authentication
 #### POST `/api/auth/signup`:
@@ -63,7 +79,7 @@ Generates a new session for a Deblok account, returns a Deblok Auth Token.
 }
 ```
 
-**Example Failure Response**:
+**Example Failure Response** (400):
 ```text
 ERR: Password is incorrect
 ```
@@ -94,12 +110,12 @@ Creates a Deblok container and returns the id, node, and the port.
 {"name":"debian","for":"md5:examplemd5hash","node":-1}
 ```
 
-**Example Success Response**:
+**Example Success Response** (200):
 ```json
 {"port":"59000:6080","fromNode":0,"returned":"41e2b8ffff2143f5757beef4e68d54cbc7cfe2f24f7ef61b5c947ce3a436d66d"}
 ```
 
-**Example Failure Response**:
+**Example Failure Response** (400):
 ```text
 ERR: Must provide userid.
 ```
