@@ -116,7 +116,37 @@ OK!
 ERR: The creation time and/or the expiry time is invalid.
 ```
 
+#### GET `/api/auth/getuserinfo/:user/`:
+Gets the user info of the specified user, right now this is just the display name.
+* The user field has to be a valid Deblok User ID.
 
+**Example Success Response** (200):
+```json
+{"displayName":"rare1k"}
+```
+
+**Example Failure Response** (404):
+```text
+ERR: The user does not exist.
+```
+
+### POST `/api/auth/updatedisplayname/`:
+Changes the display name for a given user.
+
+**Example Body**:
+```json
+{"newname":"testing12344","for":"somemd5hashhere","auth":"QGRibG9rLmNyMzcwOWUwMj..."}
+```
+
+**Example Success Response** (200):
+```text
+OK
+```
+
+**Example Failure Response** (400):
+```text
+ERR: Auth token is errornous.
+```
 
 ## Container Management
 
