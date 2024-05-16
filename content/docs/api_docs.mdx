@@ -7,11 +7,11 @@ description: Deblok is a platform for disposable workspaces on-the-fly.
 Keep in mind that the default ratelimit policies are 100 requests per 5 minutes across all api routes. This can be changed in `config.ts`.
 
 
-## Captcha
-#### GET `/api/captcha/request`:
+##     Captcha
+#### GET /api/captcha/request
 Requests a captcha to be generated. Returns a UUID.
 
-#### GET `/api/captcha/:query/void`:
+#### GET /api/captcha/:query/void
 Voids a captcha. Returns 204.
 * The `query` field has to be a valid Captcha UUID
 
@@ -25,7 +25,7 @@ ERR: Captcha not found.
 ERR: Captcha not found.
 ```
 
-#### POST `/api/captcha/:query/validate`:
+#### POST /api/captcha/:query/validate
 Checks if the given captcha is correct or not
 * The `query` field has to be a valid Captcha UUID
 * The request body has to be just the captcha answer and nothing else.
@@ -41,7 +41,7 @@ true
 ```
 
 
-#### GET `/api/captcha/:query/image.gif`:
+#### GET /api/captcha/:query/image.gif
 Returns the image of a given captcha.
 * The `query` field has to be a valid Captcha UUID
 
@@ -51,7 +51,7 @@ ERR: Captcha not found.
 ```
 
 ## Authentication
-#### POST `/api/auth/signup`:
+#### POST /api/auth/signup
 Makes a new Deblok account, returns a UUID.
 * The `usr` field has to be an MD5 hash of the username
 * The `pwd` field has to be an SHA256 hash of the password
@@ -70,7 +70,7 @@ Makes a new Deblok account, returns a UUID.
 ERR: One or more fields are missing.
 ```
 
-#### POST `/api/auth/login`:
+#### POST /api/auth/login
 Generates a new session for a Deblok account, returns a Deblok Auth Token.
 * The `usr` field has to be an MD5 hash of the username
 * The `pwd` field has to be an SHA256 hash of the password
@@ -89,7 +89,7 @@ Generates a new session for a Deblok account, returns a Deblok Auth Token.
 ERR: Password is incorrect
 ```
 
-#### POST `/api/auth/tokenvalidate`:
+#### POST /api/auth/tokenvalidate
 Ensures a Deblok Auth Token is valid. Accepts a Deblok Auth Token and returns any errors or OK!
 * The request body has to be the auth token and nothing else.
 
@@ -103,7 +103,7 @@ OK!
 ERR: The creation time and/or the expiry time is invalid.
 ```
 
-#### GET `/api/auth/getuserinfo/:user/`:
+#### GET /api/auth/getuserinfo/:user/
 Gets the user info of the specified user, right now this is just the display name.
 * The user field has to be a valid Deblok User ID.
 
@@ -117,7 +117,7 @@ Gets the user info of the specified user, right now this is just the display nam
 ERR: The user does not exist.
 ```
 
-#### POST `/api/auth/updatedisplayname/`:
+#### POST /api/auth/updatedisplayname/
 Changes the display name for a given user.
 
 **Example Body**:
@@ -135,9 +135,9 @@ OK
 ERR: Auth token is errornous.
 ```
 
-## Container Management
+##     Container Management
 
-#### POST `/api/container/create`:
+#### POST /api/container/create
 Creates a Deblok container and returns the id, node, and the port.
 * The name field has to be a friendly name from `docker/containers.json`
 * The "for" field has to be a valid Deblok user id 
@@ -158,7 +158,7 @@ Creates a Deblok container and returns the id, node, and the port.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/kill`:
+#### POST /api/container/kill
 Kills (not deletes) a Deblok container and returns the result.
 * The id field has to be a valid Docker container
 * The "for" field has to be a valid Deblok user id 
@@ -174,7 +174,7 @@ Kills (not deletes) a Deblok container and returns the result.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/delete`:
+#### POST /api/container/delete
 Deletes a Deblok container and returns the result.
 * The id field has to be a valid Docker container
 * The "for" field has to be a valid Deblok user id 
@@ -190,7 +190,7 @@ Deletes a Deblok container and returns the result.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/pause`:
+#### POST /api/container/pause
 Pauses a Deblok container and returns the result.
 * The id field has to be a valid Docker container
 * The "for" field has to be a valid Deblok user id 
@@ -206,7 +206,7 @@ Pauses a Deblok container and returns the result.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/unpause`:
+#### POST /api/container/unpause
 Unpauses a Deblok container and returns the result.
 * The id field has to be a valid Docker container
 * The "for" field has to be a valid Deblok user id 
@@ -222,7 +222,7 @@ Unpauses a Deblok container and returns the result.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/restart`:
+#### POST /api/container/restart
 Restarts a Deblok container and returns the result.
 * The id field has to be a valid Docker container
 * The "for" field has to be a valid Deblok user id 
@@ -238,7 +238,7 @@ Restarts a Deblok container and returns the result.
 ERR: Must provide userid.
 ```
 
-#### POST `/api/container/keepalive`:
+#### POST /api/container/keepalive
 Ensure a container is alive by sending keepalive requests.
 **Example Body**:
 ```json
@@ -255,35 +255,35 @@ OK!
 Internal Server Error
 ```
 
-## Uncategorized
+##     Uncategorized
 
-#### GET `/api/policy/:node/get`:
+#### GET /api/policy/:node/get
 Gets the DeblokManager node's policies
 * The node field has to be an integer
 ```json
 {"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
 ```
 
-#### GET `/api/healthcheck`:
+#### GET /api/healthcheck
 Returns the status of the NewDeblok instance
 ```json
 {"api":"up", "backend":["up","up","down"]}
 ```
 
-#### GET `/api/img/identicon.png`:
+#### GET /api/img/identicon.png
 Returns an image of a random identicon.
 
 # DeblokManager
 Keep in mind that there is HTTP Basic auth applied to DeblokManager. You can change the password or username in `config/config.json`.
 
-#### GET `/policy/`:
+#### GET /policy/
 Gets the DeblokManager node's policies
 * The node field has to be an integer
 ```json
 {"resources":{"maxram":"4G","maxcores":"2"},"keepalive":{"increment":300,"initial":60}}
 ```
 
-#### POST `/containers/create`:
+#### POST /containers/create
 Creates a DeblokManager-managed Docker container with custom resources and port allocations. Keep in mind that there is a whitelist that can be configured in config/list.txt, by default all Deblok containers are whitelisted.
 
 **Example Body**:
@@ -301,10 +301,10 @@ Creates a DeblokManager-managed Docker container with custom resources and port 
 ERR: RAM exceeds the maximum allowed value of 4G.
 ```
 
-#### GET `/containers/list`:
+#### GET /containers/list:
 Returns **all** running Docker containers, DeblokManager-managed or not.
 
-#### POST `/containers/kill`:
+#### POST /containers/kill:
 Kills a DeblokManager-managed container.
 
 **Example Body**:
@@ -322,7 +322,7 @@ Kills a DeblokManager-managed container.
 ERR: DeblokManager doesn't manage this container.
 ```
 
-#### POST `/containers/restart`:
+#### POST /containers/restart:
 Restarts a DeblokManager-managed container.
 
 **Example Body**:
@@ -340,7 +340,7 @@ Restarts a DeblokManager-managed container.
 ERR: DeblokManager doesn't manage this container.
 ```
 
-#### POST `/containers/delete`:
+#### POST /containers/delete:
 Deletes a DeblokManager-managed container.
 
 **Example Body**:
@@ -358,7 +358,7 @@ Deletes a DeblokManager-managed container.
 ERR: DeblokManager doesn't manage this container.
 ```
 
-#### POST `/containers/pause`:
+#### POST /containers/pause:
 Pauses a DeblokManager-managed container.
 
 **Example Body**:
@@ -376,7 +376,7 @@ Pauses a DeblokManager-managed container.
 ERR: DeblokManager doesn't manage this container.
 ```
 
-#### POST `/containers/unpause`:
+#### POST /containers/unpause:
 Unpauses a DeblokManager-managed container.
 
 **Example Body**:
@@ -394,7 +394,7 @@ Unpauses a DeblokManager-managed container.
 ERR: DeblokManager doesn't manage this container.
 ```
 
-#### POST `/containers/keepalive`:
+#### POST /containers/keepalive:
 Updates the container keepalive by incrementing it by `config.policy.keepalive.increment`
 
 **Example Body**:
@@ -412,5 +412,5 @@ Updated.
 ERR: Keepalive does not exist.
 ```
 
-#### GET `/ports/list`:
+#### GET /ports/list:
 Returns **all** open ports in the specified port range (`config["port-range"]`)
