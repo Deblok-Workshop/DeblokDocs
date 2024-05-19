@@ -3,4 +3,55 @@ title: Building DeblokDocker Containers
 description: Deblok is a platform for disposable workspaces on-the-fly.
 ---
 
-todo
+
+import {Step, Steps} from "fumadocs-ui/components/steps"
+
+Building your own DeblokDocker containers (eg. for a different architecture) is easy!
+
+
+* Start by cloning the DeblokDocker repository:
+    ```bash
+    git clone https://github.com/Deblok-Workshop/DeblokDocker
+    cd DeblokDocker
+    ```
+
+
+### Easy route
+<Steps>
+<Step>
+You can use `build.sh` to easily build DeblokDocker containers.
+```bash
+sudo bash build.sh # build all base containers
+sudo bash build.sh debian-base # only build one container
+```
+
+</Step>
+<Step>
+Then they are automatically tagged as `deblok-{container_name}`, for example `deblok-debian-base`.
+You can use `run.sh` to start it.
+```bash
+sudo bash start.sh debian-base # use port 3000
+sudo bash start.sh debian-base 59000 # use port 59000
+```
+
+If you'd like to tag it something else, you can do that (eg. for compatibility with NewDeblok):
+```bash
+# Tag to Deblok's container URL
+sudo docker tag deblok-debian-base:latest ghcr.io/deblok-workshop/deblokdocker/debian-base:latest
+
+# Tag to something else
+sudo docker tag deblok-debian-base:latest newdeblok-debian:latest 
+```
+</Step>
+</Steps>
+
+### Don't use build.sh route
+Literally what the title says
+<Steps>
+<Step>
+Run this single command in your terminal, feel free to change the tag and the build directory.
+```bash
+sudo docker build -t your-custom-docker-tag:latest ./debian-base
+```
+</Step>
+</Steps>
