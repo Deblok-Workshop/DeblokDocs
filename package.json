@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^1.11.3",
     "bun": "^1.1.8",
     "fumadocs-core": "^11.0.8",
     "fumadocs-mdx": "^8.2.17",
